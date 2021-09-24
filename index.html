@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+html{
+min-height:100%;/* make sure it is at least as tall as the viewport */
+position:relative;
+}
+body{
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+#optionsmenu{
+width: 100%;
+min-width: 100%;
+background: rgba(0, 0, 0, 0.8) ;
+z-index: 5;
+display: flex;
+padding: 0;
+margin: 0;
+position: absolute;
+overflow: hidden;
+top:0;
+bottom:0;
+left:0;
+right:0;
+display: none;
+}
+#content{
+align-items: center;
+margin-left:auto;
+margin-right:auto;
+padding: 2%;
+}
+#safe{
+width:200px;
+height:40px;
+color:white;
+background-color:grey;
+text-align: center;
+vertical-align: middle;
+text-align: center;
+margin: 1%;
+display:inline-block;
+padding: 50px 0;
+font-weight: bold;
+font-size: 25px;
+font-family: Arial;
+}
+#safe:hover{
+box-shadow: 0px 0px 30px #fff;
+}
+#safe {
+  color: rgba(0, 0, 0, 0.5);
+  text-decoration: none;
+  box-shadow:
+    2px 2px 0.5em rgba(122, 122, 122, 0.55),
+    inset 1px 1px 0 rgba(255, 255, 255, 0.9),
+    inset -1px -1px 0 rgba(0, 0, 0, 0.34)  ;
+  border: 1px solid #dedede;
+  background:
+  linear-gradient(
+    -72deg,
+    #dedede,
+    #ffffff 16%,
+    #dedede 21%,
+    #ffffff 24%,
+    #888888 25%,
+    #dedede 36%,
+    #ffffff 45%,
+    #ffffff 60%,
+    #dedede 72%,
+    #ffffff 80%,
+    #dedede 84%,
+    #a1a1a1
+  );
+}
+#dot {
+height: 15px;
+width: 15px;
+background-color: #B00;
+border-radius: 50%;
+display: inline-block;
+margin-left: 5px;
+}
+#search{
+color:black;
+width: 70%;
+height:50px;
+align-items: center;
+margin-left:auto;
+margin-right:auto;
+display: block;
+}
+h1{
+font-weight: bold;
+font-size: 50px;
+font-family: Arial;
+text-align: center;
+padding-top: 10%;
+padding-bottom: 10%;
+}
+#table{
+align-items: center;
+margin-left:auto;
+margin-right:auto;
+padding-left: auto;
+padding-right: auto;
+display: block;
+position: relative;
+width: 220px;
+
+}
+</style>
+</head>
+<body>
+<div id='optionsmenu'><button style="float: right;">X</button>
+    <div id='table'></div>
+</div>
+<h1><img src="logo.png" height="50" style="padding-right: 50px;">BRANCH AA</h1>
+<input id="search" type="text" size="80%" placeholder="Search safe..." onkeyup="search()" >
+<div id="content"></div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+if(typeof(Storage) !== "undefined") {
+    for (var i = 65; i <= 90; i++) {
+        for (var j = 65; j <= 90; j++) {
+            for (var num = 1; num <= 99; num++) {
+                tempnum=num;
+                if(tempnum.toString().length==1) tempnum='0'+tempnum.toString();
+        eval('localStorage.'+String.fromCharCode(i)+String.fromCharCode(j)+tempnum+'=true')
+            }    
+        }
+    }
+}
+
+for (var num = 1; num <= 20; num++) {
+    tempnum=num;
+    if(tempnum.toString().length==1) tempnum='0'+tempnum.toString()
+    $("#content").append('<div id="safe">AA'+tempnum+'<span id="dot"></div>');
+}
+$('body').on('click', '#safe', function() {
+$('#optionsmenu').toggle();
+$('#table').html('')
+$('#table').append($(this).clone());
+})
+function search() {
+  if ($("#search").val()==""){$("#content div").show()}else{
+  $("#content div").each(function(index){
+	  if(!$(this).text()){
+		$(this).hide();
+	  }else if ($(this).text().indexOf($("#search").val())>-1&&$(this).css('display')=='none'){
+	  $(this).show();
+    } else if ($(this).text().indexOf($("#search").val())==-1) {
+	$(this).hide();
+    }
+  })}
+}
+</script>
+</body>
+</html>
