@@ -5,6 +5,8 @@
 html{
 min-height:100%;/* make sure it is at least as tall as the viewport */
 position:relative;
+font-family: Arial;
+
 }
 body{
     padding: 0;
@@ -84,7 +86,39 @@ border-radius: 50%;
 display: inline-block;
 margin-left: 5px;
 }
+#dot:hover{
+
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+ 
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+
 #search{
+font-size: 50px;
 color:black;
 width: 70%;
 height:50px;
@@ -112,11 +146,38 @@ position: relative;
 width: 220px;
 
 }
+#option{
+font-size: 20px;
+width: 30%;
+height: 100px;
+align-items: center;
+height: 20px;
+margin-left:auto;
+margin-right:auto;
+padding-left: auto;
+padding-right: auto;
+display: block;
+position: relative;
+position: relative;
+align-items: center;
+border: none;
+text-decoration: none;
+text-align: center;
+border-radius: 8px;
+margin-top: 2%;
+margin-bottom: 2%;
+}
 </style>
 </head>
 <body>
-<div id='optionsmenu'><button style="float: right;">X</button>
-    <div id='table'></div>
+<div id='optionsmenu'>
+<button style="float: right;" onclick="togglesafetybox()">X</button>
+<div id='table'></div>
+
+<button id='option'>Login by HKID</button>
+<button id='option'> Register</button>
+
+
 </div>
 <h1><img src="logo.png" height="50" style="padding-right: 50px;">BRANCH AA</h1>
 <input id="search" type="text" size="80%" placeholder="Search safe..." onkeyup="search()" >
@@ -124,7 +185,7 @@ width: 220px;
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-
+/*
 if(typeof(Storage) !== "undefined") {
     for (var i = 65; i <= 90; i++) {
         for (var j = 65; j <= 90; j++) {
@@ -136,7 +197,7 @@ if(typeof(Storage) !== "undefined") {
         }
     }
 }
-
+*/
 for (var num = 1; num <= 20; num++) {
     tempnum=num;
     if(tempnum.toString().length==1) tempnum='0'+tempnum.toString()
@@ -158,6 +219,20 @@ function search() {
 	$(this).hide();
     }
   })}
+}
+function togglesafetybox(){
+    $('#optionsmenu').toggle();
+$('#table').html('')
+}
+
+
+
+
+
+
+
+function autolog(action){
+    localStorage.log=localStorage.log+datetime.data+action
 }
 </script>
 </body>
