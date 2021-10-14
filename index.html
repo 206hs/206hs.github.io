@@ -2,16 +2,12 @@
 <html>
 <head>
 <style>
-html{
-min-height:100%;/* make sure it is at least as tall as the viewport */
-position:relative;
+html,body{
 font-family: Arial;
+padding: 0;
+margin: 0;
+height: 100%;
 
-}
-body{
-    padding: 0;
-    margin: 0;
-    height: 100%;
 }
 #optionsmenu{
 width: 100%;
@@ -28,6 +24,8 @@ bottom:0;
 left:0;
 right:0;
 display: none;
+backdrop-filter: blur(5px);
+
 }
 #content{
 align-items: center;
@@ -36,8 +34,8 @@ margin-right:auto;
 padding: 2%;
 }
 #safe{
-width:200px;
-height:40px;
+width:500px;!important
+height:60px;!important
 color:white;
 background-color:grey;
 text-align: center;
@@ -45,9 +43,9 @@ vertical-align: middle;
 text-align: center;
 margin: 1%;
 display:inline-block;
-padding: 50px 0;
+padding: 100px 0;
 font-weight: bold;
-font-size: 25px;
+font-size: 50px;
 font-family: Arial;
 }
 #safe:hover{
@@ -78,45 +76,59 @@ box-shadow: 0px 0px 30px #fff;
     #a1a1a1
   );
 }
-#dot {
-height: 15px;
-width: 15px;
+#red{
+height: 30px;
+width: 30px;
 background-color: #B00;
 border-radius: 50%;
 display: inline-block;
 margin-left: 5px;
 }
-#dot:hover{
 
+#grn{
+height: 30px;
+width: 30px;
+background-color: #0B0;
+border-radius: 50%;
+display: inline-block;
+margin-left: 5px;
 }
-
-.tooltip {
-  position: relative;
-  display: inline-block;
-  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+#bk{
+  height: 100%;
+  background-image: url("bk.png");
+  backdrop-filter: blur(5px);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position:center;
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
 }
-
-/* Tooltip text */
-.tooltip .tooltiptext {
-  visibility: hidden;
-  width: 120px;
-  background-color: black;
-  color: #fff;
-  text-align: center;
-  padding: 5px 0;
-  border-radius: 6px;
- 
-  /* Position the tooltip text - see examples below! */
+#staffbk{
+  height: 100%;
+  background-image: url("vault.png");
+  backdrop-filter: blur(5px);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position:center;
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+}
+#welcometext{
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
   position: absolute;
-  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
 }
-
-/* Show the tooltip text when you mouse over the tooltip container */
-.tooltip:hover .tooltiptext {
-  visibility: visible;
-}
-
-
 #search{
 font-size: 50px;
 color:black;
@@ -128,63 +140,131 @@ margin-right:auto;
 display: block;
 }
 h1{
-font-weight: bold;
-font-size: 50px;
+font-weight: bold;!important
+font-size: 70px;!important
 font-family: Arial;
 text-align: center;
-padding-top: 10%;
-padding-bottom: 10%;
+padding-top: 5%;
+padding-bottom: 5%;
 }
-#table{
+#table div{
 align-items: center;
 margin-left:auto;
 margin-right:auto;
 padding-left: auto;
 padding-right: auto;
 display: block;
-position: relative;
-width: 220px;
-
+justify-content: center;
+left: 40%;
 }
-#option{
-font-size: 20px;
-width: 30%;
-height: 100px;
-align-items: center;
-height: 20px;
-margin-left:auto;
-margin-right:auto;
-padding-left: auto;
-padding-right: auto;
-display: block;
-position: relative;
-position: relative;
-align-items: center;
-border: none;
-text-decoration: none;
+#optionsmenu button{
+  width: 30%;
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+  margin: 4px 2px;
+  cursor: pointer;
+  left: 40%;
+  margin-left: auto;
+  margin-right: auto;
+}
+h2{
+font-weight: bold;!important
+font-size: 50px;!important
+font-family: Arial;
 text-align: center;
-border-radius: 8px;
-margin-top: 2%;
+}
+#bar{
+padding:0px 0px 0px 0px;
+height:4px;
+width:100%;
+FONT-SIZE: 0px;
+background-image: url(bar.png);
+background-repeat: repeat-y;
+FONT-SIZE: 0px;
+display: block;
+overflow-y: hidden;
+}
+#header {
+width: 100%;
+background-color: #42403c;
+background: white;
+position: fixed;
+height: 60px;
+top: 0;
+z-index: 99;
+}
+#title{
+margin-top: 10px;
+margin-bottom: 10px;
+margin-left: 3px;
+margin-right: 3px;
+}
+input{
+padding: 3px 4px;
+width: 200px;
+border: 1px solid #999;
+-webkit-box-shadow: none;
+-moz-box-shadow: none;
+box-shadow: none;
+border-radius: 0px;
+width: 200px !important;
 margin-bottom: 2%;
+}
+#staff{
+vertical-align: middle;
+text-align: center;
+align-items: center;
+margin-left:auto;
+margin-right:auto;
 }
 </style>
 </head>
 <body>
+  <header id="header">
+    <img id='title' src="title.png">
+    <div id="bar"></div>
+</header>
+
+<div id="fullpage">
+
+<div id="welcome" class="section">
+
+
+<div id='bk'></div>
+<div id='welcometext'><h1>SAFETY BOX CONTROL PANEL</h1><h2>SWIPE UP TO CONTINUE</h2></div>
+</div><!--welcome-->
+<div id="staff" class="section">
+  
+<h1>Login STAFF ONLY</h1>
+Username: <input><br>
+Password: <input>
+</div><!--staff-->
+<div id="vault" class="section">
 <div id='optionsmenu'>
-<button style="float: right;" onclick="togglesafetybox()">X</button>
+<button style="float: right;width: fit-content;" onclick="togglesafetybox()">X</button>
 <div id='table'></div>
-
-<button id='option'>Login by HKID</button>
-<button id='option'> Register</button>
-
-
+<button>Login by HKID</button><br>
+<button>Register</button>
 </div>
 <h1><img src="logo.png" height="50" style="padding-right: 50px;">BRANCH AA</h1>
 <input id="search" type="text" size="80%" placeholder="Search safe..." onkeyup="search()" >
 <div id="content"></div>
+</div><!--vault-->
+</div><!--container-->
+<link rel="stylesheet"href="http://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.css">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+var hkid,remainder,check
+new fullpage('#fullpage',{sectionsColor:['white','lightgrey','white'],});
 /*
 if(typeof(Storage) !== "undefined") {
     for (var i = 65; i <= 90; i++) {
@@ -198,12 +278,28 @@ if(typeof(Storage) !== "undefined") {
     }
 }
 */
+if(typeof(Storage) !== "undefined") {
 for (var num = 1; num <= 20; num++) {
-    tempnum=num;
-    if(tempnum.toString().length==1) tempnum='0'+tempnum.toString()
-    $("#content").append('<div id="safe">AA'+tempnum+'<span id="dot"></div>');
+tempnum=num;
+if(tempnum.toString().length==1) tempnum='0'+tempnum.toString();
+if(Math.floor(Math.random()*2)) eval('localStorage.AA'+tempnum+'=""')
+else{
+hkid=String.fromCharCode(Math.floor(Math.random()*26)+65)+Math.floor(100000 + Math.random() * 900000).toString()
+remainder=(((hkid[0].charCodeAt(0)-55)*8+hkid[1]*7+hkid[2]*6+hkid[3]*5+hkid[4]*4+hkid[5]*3+hkid[6]*2)%11)
+if (remainder==0) var check='0';
+else if (remainder==1) var check='A';
+else check=(11-remainder);
+eval('localStorage.AA'+tempnum+'="'+hkid+'('+check+')"');
+}}}
+for(var num=1;num<=20;num++){
+tempnum=num;
+if(tempnum.toString().length==1) tempnum='0'+tempnum.toString()
+var status
+eval('status = localStorage.AA'+tempnum)
+if (status) $("#content").append('<div id="safe">AA'+tempnum+'<span id="red"></div>');
+else  $("#content").append('<div id="safe">AA'+tempnum+'<span id="grn"></div>');
 }
-$('body').on('click', '#safe', function() {
+$('body').on('click','#safe',function(){
 $('#optionsmenu').toggle();
 $('#table').html('')
 $('#table').append($(this).clone());
@@ -224,11 +320,6 @@ function togglesafetybox(){
     $('#optionsmenu').toggle();
 $('#table').html('')
 }
-
-
-
-
-
 
 
 function autolog(action){
