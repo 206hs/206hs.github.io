@@ -34,8 +34,8 @@ margin-right:auto;
 padding: 2%;
 }
 #safe{
-width:500px;!important
-height:60px;!important
+width:400px;!important
+height:50px;!important
 color:white;
 background-color:grey;
 text-align: center;
@@ -45,11 +45,12 @@ margin: 1%;
 display:inline-block;
 padding: 100px 0;
 font-weight: bold;
-font-size: 50px;
+font-size: 30px;
 font-family: Arial;
 }
 #safe:hover{
 box-shadow: 0px 0px 30px #fff;
+cursor: pointer;
 }
 #safe {
   color: rgba(0, 0, 0, 0.5);
@@ -77,8 +78,8 @@ box-shadow: 0px 0px 30px #fff;
   );
 }
 #red{
-height: 30px;
-width: 30px;
+height: 25px;
+width: 25px;
 background-color: #B00;
 border-radius: 50%;
 display: inline-block;
@@ -86,8 +87,8 @@ margin-left: 5px;
 }
 
 #grn{
-height: 30px;
-width: 30px;
+height: 25px;
+width: 25px;
 background-color: #0B0;
 border-radius: 50%;
 display: inline-block;
@@ -104,24 +105,14 @@ margin-left: 5px;
   filter: blur(8px);
   -webkit-filter: blur(8px);
 }
-#staffbk{
-  height: 100%;
-  background-image: url("vault.png");
-  backdrop-filter: blur(5px);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  background-position:center;
-  filter: blur(8px);
-  -webkit-filter: blur(8px);
-}
+
 #welcometext{
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 0.3);
   color: white;
   font-weight: bold;
   position: absolute;
-  top: 50%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
@@ -130,9 +121,10 @@ margin-left: 5px;
   text-align: center;
 }
 #search{
-font-size: 50px;
+font-size: 20px;
 color:black;
 width: 70%;
+min-width: 200px;
 height:50px;
 align-items: center;
 margin-left:auto;
@@ -156,9 +148,11 @@ padding-right: auto;
 display: block;
 justify-content: center;
 left: 40%;
+margin-top:10%
+
 }
 #optionsmenu button{
-  width: 30%;
+  width: 25%;
   border: none;
   color: black;
   padding: 15px 32px;
@@ -167,12 +161,13 @@ left: 40%;
   display: block;
   justify-content: center;
   align-items: center;
-  font-size: 50px;
-  margin: 4px 2px;
+  font-size: 30px;
   cursor: pointer;
   left: 40%;
   margin-left: auto;
   margin-right: auto;
+  padding-bottom: 2%;
+  margin-bottom: 2%;
 }
 h2{
 font-weight: bold;!important
@@ -216,6 +211,7 @@ box-shadow: none;
 border-radius: 0px;
 width: 200px !important;
 margin-bottom: 2%;
+font-size: 30px;
 }
 #staff{
 vertical-align: middle;
@@ -224,36 +220,69 @@ align-items: center;
 margin-left:auto;
 margin-right:auto;
 }
+#staff button,#greenbutton, .greenbutton{
+min-width: 60px;
+font-weight: 400;
+font-size: 1.1875rem;
+line-height: 1.26315789;
+background: #00a865;
+border-color: #00a865;
+color: #ffffff;
+padding: 4px 19px;
+margin-top: 2%;
+}
+#optionsmenu p{
+color: white;
+font-weight: bold;
+font-size: 30px;
+text-align: center;
+padding-top: 2%;
+padding-bottom: 2%;
+align-items: center;
+margin-left:auto;
+margin-right:auto;
+padding: 70px 0;
+}
+#registerinput{
+  color: white;
+font-weight: bold;
+font-size: 30px;
+text-align: center;
+padding-top: 2%;
+padding-bottom: 2%;
+align-items: center;
+margin-left:auto;
+margin-right:auto;
+padding: 70px 0;
+}
 </style>
 </head>
 <body>
-  <header id="header">
-    <img id='title' src="title.png">
-    <div id="bar"></div>
-</header>
-
+<header id="header"><img id='title' src="title.png">
+<div id="bar"></div></header>
 <div id="fullpage">
-
 <div id="welcome" class="section">
-
-
 <div id='bk'></div>
 <div id='welcometext'><h1>SAFETY BOX CONTROL PANEL</h1><h2>SWIPE UP TO CONTINUE</h2></div>
 </div><!--welcome-->
 <div id="staff" class="section">
-  
 <h1>Login STAFF ONLY</h1>
 Username: <input><br>
-Password: <input>
+Password: <input><br>
+<button>Login</button>
 </div><!--staff-->
 <div id="vault" class="section">
 <div id='optionsmenu'>
-<button style="float: right;width: fit-content;" onclick="togglesafetybox()">X</button>
+<button id='greenbutton' style="float: right;width: fit-content;margin-top: 10%;" onclick="togglesafetybox()">X</button>
 <div id='table'></div>
-<button>Login by HKID</button><br>
-<button>Register</button>
+<p></p>
+
+<div id="registerinput">New register user: <input placeholder="e.g. A123456(3)"></div>
+<button id='register' class='greenbutton'>Register</button>
+<button id='unregister'>Unregister</button>
+<button id='open' class='greenbutton'>Open</button>
 </div>
-<h1><img src="logo.png" height="50" style="padding-right: 50px;">BRANCH AA</h1>
+<h1>BRANCH AA</h1>
 <input id="search" type="text" size="80%" placeholder="Search safe..." onkeyup="search()" >
 <div id="content"></div>
 </div><!--vault-->
@@ -267,18 +296,16 @@ var hkid,remainder,check
 new fullpage('#fullpage',{sectionsColor:['white','lightgrey','white'],});
 /*
 if(typeof(Storage) !== "undefined") {
-    for (var i = 65; i <= 90; i++) {
-        for (var j = 65; j <= 90; j++) {
-            for (var num = 1; num <= 99; num++) {
-                tempnum=num;
-                if(tempnum.toString().length==1) tempnum='0'+tempnum.toString();
-        eval('localStorage.'+String.fromCharCode(i)+String.fromCharCode(j)+tempnum+'=true')
-            }    
-        }
-    }
-}
+for (var i = 65; i <= 90; i++) {
+for (var j = 65; j <= 90; j++) {
+for (var num = 1; num <= 99; num++) {
+tempnum=num;
+if(tempnum.toString().length==1) tempnum='0'+tempnum.toString();
+eval('localStorage.'+String.fromCharCode(i)+String.fromCharCode(j)+tempnum+'=true')
+}}}}
 */
-if(typeof(Storage) !== "undefined") {
+if (localStorage.cookie) {
+localStorage.cookie='true'
 for (var num = 1; num <= 20; num++) {
 tempnum=num;
 if(tempnum.toString().length==1) tempnum='0'+tempnum.toString();
@@ -299,11 +326,54 @@ eval('status = localStorage.AA'+tempnum)
 if (status) $("#content").append('<div id="safe">AA'+tempnum+'<span id="red"></div>');
 else  $("#content").append('<div id="safe">AA'+tempnum+'<span id="grn"></div>');
 }
+
 $('body').on('click','#safe',function(){
 $('#optionsmenu').toggle();
-$('#table').html('')
+$('#table').html('');
 $('#table').append($(this).clone());
+var hkid;
+eval('hkid = localStorage.'+$(this).text());
+if (hkid) {
+  $('#register').hide()
+  $('#registerinput').hide()
+
+  $('#unregister').show()
+  $('#open').show()
+  $('p').html('This Safety box is owned by<br>'+hkid)}
+else {
+  $('#register').show()
+  $('#registerinput').show()
+
+  $('#unregister').hide()
+  $('#open').hide()
+  $('p').html('This Safety box is not owned by anyone')
+}})
+$('#unregister').click(function(){
+  $('#register').show()
+  $('#registerinput').show()
+
+  $('#unregister').hide()
+  $('#open').hide()
+  $('p').html('This Safety box is not owned by anyone')
+  $('#content div').each(function(index){
+  if ($(this).text()==$('#table div').text()) $(this).find('span').attr("id","grn")
 })
+  eval('localStorage.'+$('#table div').text()+'=""')
+  $('#table div span').attr("id","grn")
+})
+$('#register').click(function(){
+  $('#register').hide()
+  $('#registerinput').hide()
+
+  $('#unregister').show()
+  $('#open').show()
+  $('p').html('This Safety box is owned by<br>'+$('#optionsmenu input').val())
+  if ($(this).text()==$('#table div').text()) $(this).find('span').attr("id","red")
+  $('#table div span').attr("id","red")
+  eval('localStorage.'+$('#table div').text()+'="'+$('#optionsmenu input').val()+'"')
+
+})
+
 function search() {
   if ($("#search").val()==""){$("#content div").show()}else{
   $("#content div").each(function(index){
