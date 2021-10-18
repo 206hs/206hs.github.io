@@ -1,0 +1,15 @@
+<div id='result'></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<Script>
+$.get('temp.txt',function(data){console.log(typeof data)});
+
+1
+2
+3
+$.post( "temp.txt", function( data ) {
+  $( ".result" ).html( data );
+});
+console.log('dn')
+
+
+</Script>
