@@ -1,0 +1,18 @@
+<table id="example">
+
+</table>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.css">
+<link rel="stylesheet"href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script>
+
+"columnDefs" : [{
+"targets" : 6 ,
+"data": "img",
+"render" : function ( url, type, full) {
+return '<img height="75%" width="75%" src="'+full[7]+'"/>';
+}]
+</script>

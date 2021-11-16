@@ -2,19 +2,18 @@
 <html>
 <head>
 <style>
-  /*ssh://zak/var/log/apache2/access.log*/
+/*ssh://zak/var/log/apache2/access.log*/
 html,body{
 font-family: Arial;
 padding: 0;
 margin: 0;
 height: 100%;
-
 }
 #optionsmenu{
 width: 100%;
 min-width: 100%;
 background: rgba(0, 0, 0, 0.8) ;
-z-index: 5;
+z-index: 3;
 display: flex;
 padding: 0;
 margin: 0;
@@ -42,41 +41,42 @@ background-color:grey;
 text-align: center;
 vertical-align: middle;
 text-align: center;
-margin: 1%;
+margin: 5px;
 display:inline-block;
 padding: 100px 0;
 font-weight: bold;
 font-size: 30px;
 font-family: Arial;
+margin-bottom:0;
 }
 #safe:hover{
 box-shadow: 0px 0px 30px #fff;
 cursor: pointer;
 }
 #safe {
-  color: rgba(0, 0, 0, 0.5);
-  text-decoration: none;
-  box-shadow:
-    2px 2px 0.5em rgba(122, 122, 122, 0.55),
-    inset 1px 1px 0 rgba(255, 255, 255, 0.9),
-    inset -1px -1px 0 rgba(0, 0, 0, 0.34)  ;
-  border: 1px solid #dedede;
-  background:
-  linear-gradient(
-    -72deg,
-    #dedede,
-    #ffffff 16%,
-    #dedede 21%,
-    #ffffff 24%,
-    #888888 25%,
-    #dedede 36%,
-    #ffffff 45%,
-    #ffffff 60%,
-    #dedede 72%,
-    #ffffff 80%,
-    #dedede 84%,
-    #a1a1a1
-  );
+color: rgba(0, 0, 0, 0.5);
+text-decoration: none;
+box-shadow:
+2px 2px 0.5em rgba(122, 122, 122, 0.55),
+inset 1px 1px 0 rgba(255, 255, 255, 0.9),
+inset -1px -1px 0 rgba(0, 0, 0, 0.34)  ;
+border: 1px solid #dedede;
+background:
+linear-gradient(
+-72deg,
+#dedede,
+#ffffff 16%,
+#dedede 21%,
+#ffffff 24%,
+#888888 25%,
+#dedede 36%,
+#ffffff 45%,
+#ffffff 60%,
+#dedede 72%,
+#ffffff 80%,
+#dedede 84%,
+#a1a1a1
+);
 }
 #red{
 height: 25px;
@@ -95,31 +95,41 @@ border-radius: 50%;
 display: inline-block;
 margin-left: 5px;
 }
+
+#org{
+height: 25px;
+width: 25px;
+background-color: rgb(255, 127, 0);
+border-radius: 50%;
+display: inline-block;
+margin-left: 5px;
+}
+
 #bk{
-  height: 100%;
-  background-image: url("bk.png");
-  backdrop-filter: blur(5px);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  background-position:center;
-  filter: blur(8px);
-  -webkit-filter: blur(8px);
+height: 100%;
+background-image: url("/static/bk3.gif");
+backdrop-filter: blur(5px);
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-size: cover;
+background-position:center;
+filter: blur(8px);
+-webkit-filter: blur(8px);
 }
 
 #welcometext{
-  background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0, 0.3);
-  color: white;
-  font-weight: bold;
-  position: absolute;
-  top: 60%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-  width: 100%;
-  padding: 20px;
-  text-align: center;
+background-color: rgb(0,0,0);
+background-color: rgba(0,0,0, 0.3);
+color: white;
+font-weight: bold;
+position: absolute;
+top: 60%;
+left: 50%;
+transform: translate(-50%, -50%);
+z-index: 2;
+width: 100%;
+padding: 20px;
+text-align: center;
 }
 #search{
 font-size: 20px;
@@ -133,14 +143,15 @@ margin-right:auto;
 display: block;
 }
 h1{
-font-weight: bold;!important
-font-size: 70px;!important
+font-weight: bold;
+font-size: calc(30px + 1.5vw);
 font-family: Arial;
 text-align: center;
 padding-top: 5%;
 padding-bottom: 5%;
+
 }
-#table div{
+#table div,#open div,#register div{
 align-items: center;
 margin-left:auto;
 margin-right:auto;
@@ -149,26 +160,27 @@ padding-right: auto;
 display: block;
 justify-content: center;
 left: 40%;
-margin-top:10%
+margin-top:5%
 
 }
-#optionsmenu button{
-  width: 25%;
-  border: none;
-  color: black;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: block;
-  justify-content: center;
-  align-items: center;
-  font-size: 30px;
-  cursor: pointer;
-  left: 40%;
-  margin-left: auto;
-  margin-right: auto;
-  padding-bottom: 2%;
-  margin-bottom: 2%;
+#optionsmenu button,#open button,#unregister{
+width: 25%;
+border: none;
+color: black;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+display: block;
+justify-content: center;
+align-items: center;
+font-size: 30px;
+cursor: pointer;
+left: 40%;
+margin-left: auto;
+margin-right: auto;
+margin-bottom: 5px;
+margin-top: 5px;
+
 }
 h2{
 font-weight: bold;!important
@@ -181,11 +193,10 @@ padding:0px 0px 0px 0px;
 height:4px;
 width:100%;
 FONT-SIZE: 0px;
-background-image: url(bar.png);
+background-image: url("/static/bar.png");
 background-repeat: repeat-y;
 FONT-SIZE: 0px;
 display: block;
-overflow-y: hidden;
 }
 #header {
 width: 100%;
@@ -194,7 +205,7 @@ background: white;
 position: fixed;
 height: 60px;
 top: 0;
-z-index: 99;
+z-index: 5;
 }
 #title{
 margin-top: 10px;
@@ -204,13 +215,12 @@ margin-right: 3px;
 }
 input{
 padding: 3px 4px;
-width: 200px;
+width: 400px;
 border: 1px solid #999;
 -webkit-box-shadow: none;
 -moz-box-shadow: none;
 box-shadow: none;
 border-radius: 0px;
-width: 200px !important;
 margin-bottom: 2%;
 font-size: 30px;
 }
@@ -221,7 +231,7 @@ align-items: center;
 margin-left:auto;
 margin-right:auto;
 }
-#staff button,#greenbutton, .greenbutton{
+#staff button,#greenbutton, .greenbutton,#optionsmenu button #open button,#header button,#register{
 min-width: 60px;
 font-weight: 400;
 font-size: 1.1875rem;
@@ -229,37 +239,68 @@ line-height: 1.26315789;
 background: #00a865;
 border-color: #00a865;
 color: #ffffff;
-padding: 4px 19px;
-margin-top: 2%;
+padding: 0px 19px;
+margin-top: 0%;
 }
-#optionsmenu p{
+#optionsmenu p,#open p,.white{
 color: white;
 font-weight: bold;
 font-size: 30px;
 text-align: center;
-padding-top: 2%;
-padding-bottom: 2%;
 align-items: center;
 margin-left:auto;
 margin-right:auto;
-padding: 70px 0;
+padding: 3px;
+margin: 3px;
 }
-#registerinput{
-  color: white;
+#registerinput,#open{
+color: white;
 font-weight: bold;
 font-size: 30px;
 text-align: center;
-padding-top: 2%;
-padding-bottom: 2%;
 align-items: center;
 margin-left:auto;
 margin-right:auto;
-padding: 70px 0;
 }
+#header button{
+top: 20px;
+right: 0;
+margin-top:0;
+float: right;
+height: 55px;
+display: none;
+}
+#log{
+background-color: lightgrey;
+background: lightgrey;
+position: fixed;
+bottom: 0;
+top: 0;
+z-index: 3;
+display: block;
+right: 0;
+margin-top: 60px;
+opacity: 0.85;
+display: none;
+overflow-y: scroll;
+overflow-x: scroll;
+}
+#vault{
+overflow-y: scroll;
+position: absolute;
+}
+
+
 </style>
 </head>
 <body>
-<header id="header"><img id='title' src="title.png">
+<header id="header"><img id='title' src="{{url_for('static', filename='title.png')}}">
+<button id="logbutton">LOG</button>
+<div id='log'>
+<table id='logtable'>
+<thead><tr><th>Time</th><th>Staff</th><th>Event</th><th>Snapshot</th></tr></thead>
+<tbody></tbody></table>
+</div>
 <div id="bar"></div></header>
 <div id="fullpage">
 <div id="welcome" class="section">
@@ -268,143 +309,300 @@ padding: 70px 0;
 </div><!--welcome-->
 <div id="staff" class="section">
 <h1>Login STAFF ONLY</h1>
-Username: <input><br>
-Password: <input><br>
-<button>Login</button>
+<div id='prekey'>
+Username: <input id='username'><br>
+Password: <input id='password' type="password"><br>
+<a style="color: white;">staffAA1 123</a><br>
+<button id='login'>Login</button><br>
+<a id='error' style="color: darkred;display: none;">Incorrect Username / Password</a>
+</div>
+<div id='key' style="display: none;">
+Please use Google Authenticator, Authy, or another compatible app<br>Find <a></a> 6 digit token<br>
+6 Digit Token: <input id='token' onkeyup="check()" placeholder="e.g. 123456">
+<p id='tokenerror' style="color: red;display: none;">Incorrect token</p>
+</div><!--key-->
 </div><!--staff-->
-<div id="vault" class="section">
+<div id="vault" class="section" style="display: none;" >
 <div id='optionsmenu'>
 <button id='greenbutton' style="float: right;width: fit-content;margin-top: 10%;" onclick="togglesafetybox()">X</button>
 <div id='table'></div>
 <p></p>
-
-<div id="registerinput">New register user: <input placeholder="e.g. A123456(3)"></div>
-<button id='register' class='greenbutton'>Register</button>
-<button id='unregister'>Unregister</button>
-<button id='open' class='greenbutton'>Open</button>
+<div id="registerinput">
+<form action = /save method = "POST" id='save'>
+<input  name="Safeid" id='safeid' style="display: none;">
+New register user HKID: <input placeholder="e.g. A123456(8)" name="Hkid" id='inputhkid'><br>
+6 Digit Pin: <input placeholder="e.g. 123456" name="Pin" id='inputpin' type="password">
+<input id="branchcookie" name="Branchcookie" style="display: none;">
+<input  style="display: none; visibility:hidden; position:absolute" type="submit" id='register' value= 'Register'>
+</form>
+<button id='registerverify' value= 'Register' class='greenbutton'>Register</button>
+<a id='registernerror' style="color: red;display: none;">Incorrect HKID/pin format</a>
+</div><!--registerinput-->
+<div id='open'>
+<input id='unregister' type="submit" value='Unregister' class='greenbutton'>
+<a class='white'>6 Digit Pin: </a><input placeholder="e.g. 123456"  b name="Pin" type="password" id="verifypin">
+<button id='openbutton' class='greenbutton'>Open</button>
+<a id='optionerror' style="color: red;display: none;">Incorrect Pin</a>
+</div><!--open-->
 </div>
-<h1>BRANCH AA</h1>
+
+<h1 id='branch'>BRANCH AA</h1>
 <input id="search" type="text" size="80%" placeholder="Search safe..." onkeyup="search()" >
 <div id="content"></div>
+<canvas id='tempcanvas'></canvas>
 </div><!--vault-->
 </div><!--container-->
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.css">
+<link rel="stylesheet"href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <script>
 var hkid,remainder,check
-new fullpage('#fullpage',{sectionsColor:['white','lightgrey','white'],});
-/*
-if(typeof(Storage) !== "undefined") {
-for (var i = 65; i <= 90; i++) {
-for (var j = 65; j <= 90; j++) {
-for (var num = 1; num <= 99; num++) {
-tempnum=num;
-if(tempnum.toString().length==1) tempnum='0'+tempnum.toString();
-eval('localStorage.'+String.fromCharCode(i)+String.fromCharCode(j)+tempnum+'=true')
-}}}}
-*/
+new fullpage('#fullpage',{sectionsColor:['white','lightgrey','white']});
+{% if log %}
+var log='{{log}}'.replace(/&#39;/gm,'').replace(/[(]/gm,'[').replace(/[)]/gm,']')
+var log2d = log.substring(2,log.length-2).split("], [").map(function(e) {return e.split(", ").map(String)})
+var img = new Image();
+img.src = 'static/safe.png';
+img.onload = function(){
 
 
+log2d.every(showrecord)
+table=$('#logtable').DataTable({"order":[[0,"desc"]]});
 
-function init(){
-  for (var num = 1; num <= 20; num++) {
-tempnum=num;
-if(tempnum.toString().length==1) tempnum='0'+tempnum.toString();
-if(Math.floor(Math.random()*2)) eval('localStorage.AA'+tempnum+'=""')
-else{
-hkid=String.fromCharCode(Math.floor(Math.random()*26)+65)+Math.floor(100000 + Math.random() * 900000).toString()
-remainder=(((hkid[0].charCodeAt(0)-55)*8+hkid[1]*7+hkid[2]*6+hkid[3]*5+hkid[4]*4+hkid[5]*3+hkid[6]*2)%11)
-if (remainder==0) var check='0';
-else if (remainder==1) var check='A';
-else check=(11-remainder);
-eval('localStorage.AA'+tempnum+'="'+hkid+'('+check+')"');
-}}
 }
-if (!localStorage.cookie) {
-localStorage.cookie='true'
-console.log('now add')
-init()
+{%endif%}
+{% if safe %}
+var safe='{{safe}}'.replace(/&#39;/gm,'').replace(/[(]/gm,'[').replace(/[)]/gm,']')
+var safe2d = safe.substring(2,safe.length-2).split("], [").map(function(e){return e.split(", ").map(String)})
+{%endif%}
+{% if branchcookie %}
+logined('{{branchcookie}}')
+{%endif%}
+{% if staff %}
+var staff='{{staff}}'.replace(/&#39;/gm,'').replace(/[(]/gm,'[').replace(/[)]/gm,']')
+var staff2d = staff.substring(2,staff.length-2).split("], [").map(function(e){return e.split(", ").map(String)})
+{%endif%}
+function indexof(safeid){
+return (safeid[0].charCodeAt(0) - 65)*26+(safeid[1].charCodeAt(0) - 65)*20+safeid[2]*10+safeid[3]-1
 }
-$( document ).ready(function() {
-
+function logined(branchcookie){
+logging($('#username').val(),'Login success')
+loop()
+if($('#username').val()=='staffAA1'&&$('#password').val()=='123'){
+$('#logbutton').show()
+if (branchcookie){
+var branch=branchcookie
+$('#vault').show()
+fullpage_api.silentMoveTo(3)
+}else var branch=$('#username').val()[5]+$('#username').val()[6]
+$('#branchcookie').val(branch)
 for(var num=1;num<=20;num++){
 tempnum=num;
 if(tempnum.toString().length==1) tempnum='0'+tempnum.toString()
-var status
-eval('status = localStorage.AA'+tempnum)
-if (status) $("#content").append('<div id="safe">AA'+tempnum+'<span id="red"></div>');
-else  $("#content").append('<div id="safe">AA'+tempnum+'<span id="grn"></div>');
+if(safe2d[indexof(branch+tempnum)][1]=='None'||safe2d[indexof(branch+tempnum)][1]==''||safe2d[indexof(branch+tempnum)][1]==null)  $("#content").append('<div id="safe">'+branch+tempnum+'<span id="grn"></div>')
+else $("#content").append('<div id="safe">'+branch+tempnum+'<span id="red"></div>')
 }
+$('#branch').html('BRANCH '+branch)
+$('#vault').show()
+fullpage_api.moveSectionDown()
+fullpage_api.setAllowScrolling(false);
+}else{
+$('#key a').html($('#username').val())
+$('#prekey').hide()
+$('#key').show()}
+}
+$( document ).ready(function() {
+$('#logbutton').click(function(){$('#log').animate({width: 'toggle'})})
+$("#login").click(function(){
+if ($('#username').val()=='staffAA1'&&$('#password').val()=='123') logined()
+else if(staff.includes(('['+$('#username').val()+', '+$('#password').val()+', '))) {logined()}
+else{
+logging($('#username').val(),'Failed password')
+$('#error').show().delay(2000).fadeOut(300)
+}})
+$('#registerverify').click(function(){
+var hkid=$('#inputhkid').val()
+remainder=(((hkid[0].charCodeAt(0)-55)*8+hkid[1]*7+hkid[2]*6+hkid[3]*5+hkid[4]*4+hkid[5]*3+hkid[6]*2)%11)
+if( remainder==0) check='0'
+else if (remainder==1) check='A'
+else check=(11-remainder)
+if($('#inputhkid').val().match(/[A-Z]\d\d\d\d\d\d[(]\S[)]/)&&hkid[8]==check&&$('#inputpin').val().match(/\d\d\d\d\d\d/)) {
+$.ajax({data:{Hkid:$('#inputhkid').val(),Pin:'123456',Safeid:$('#table div').text()},type:'POST',url:'/update'})
+$('#safeid').val($('#table div').text())
+$('#register').hide()
+$('#registerinput').hide()
+$('#unregister').show()
+$('#open').show()
+$('p').html('This Safety box is owned by<br>'+$('#inputhkid').val())
+if ($(this).text()==$('#table div').text()) $(this).find('span').attr("id","red")
+$('#table div span').attr("id","red")
+$('#content div').each(function(index){
+if ($(this).text()==$('#table div').text()) $(this).find('span').attr("id","red")
+})
+
+
+}
+else $("#registernerror").show().delay(2000).fadeOut(300)
+})
+
 
 $('body').on('click','#safe',function(){
+var openning=false
 $('#optionsmenu').toggle();
 $('#table').html('');
 $('#table').append($(this).clone());
-var hkid;
-eval('hkid = localStorage.'+$(this).text());
-if (hkid) {
-  $('#register').hide()
-  $('#registerinput').hide()
-
-  $('#unregister').show()
-  $('#open').show()
-  $('p').html('This Safety box is owned by<br>'+hkid)}
-else {
-  $('#register').show()
-  $('#registerinput').show()
-
-  $('#unregister').hide()
-  $('#open').hide()
-  $('p').html('This Safety box is not owned by anyone')
+var hkid=safe2d[indexof($(this).text())][1]
+if (hkid=='None'||hkid==''||hkid==null) {
+$('#register').show()
+$('#registerinput').show()
+$('#unregister').hide()
+$('#open').hide()
+$('p').html('This Safety box is not owned by anyone')
+}else {
+$('#register').hide()
+$('#registerinput').hide()
+$('#unregister').show()
+$('#open').show()
+$('#registerhkid').val($(this).text())
+$('p').html('This Safety box is owned by<br>'+hkid)
 }})
 $('#unregister').click(function(){
-  $('#register').show()
-  $('#registerinput').show()
+logging($('#username').val(),'Unregistered '+$('#table div').text() )
+$('#safeid').val($('#table div').text())
+$('#register').show()
+$('#registerinput').show()
+$('#unregister').hide()
+$('#open').hide()
+$('p').html('This Safety box is not owned by anyone')
+$('#content div').each(function(index){
+if ($(this).text()==$('#table div').text()) $(this).find('span').attr("id","grn")
+})
+$.ajax({data:{Hkid:null,Pin:null,Safeid:$('#table div').text()},type:'POST',url:'/update'})
+$('#table div span').attr("id","grn")
+})
+var openning=false
+$('#openbutton').click(function(){
 
-  $('#unregister').hide()
-  $('#open').hide()
-  $('p').html('This Safety box is not owned by anyone')
-  $('#content div').each(function(index){
-  if ($(this).text()==$('#table div').text()) $(this).find('span').attr("id","grn")
+if (arrayAlreadyHasArray(safe2d,[$('#table div').text(),safe2d[indexof($('#table div').text())][1],$('#verifypin').val()])){
+
+if (!openning){
+openning=true
+logging($('#username').val(),'Opened '+$('#table div').text())
+
+$('#openbutton').html('Close')
+if ($(this).text()==$('#table div').text()) $(this).find('span').attr("id","org")
+$('#table div span').attr("id","org")
+}else{
+openning=false
+logging($('#username').val(),'Closed '+$('#table div').text())
+$('#openbutton').html('Open')
+if ($(this).text()==$('#table div').text()) $(this).find('span').attr("id","red")
+$('#table div span').attr("id","red")
+}
+
+
+}else{$('#optionerror').show().delay(2000).fadeOut(300)} 
 })
-  eval('localStorage.'+$('#table div').text()+'=""')
-  $('#table div span').attr("id","grn")
-})
+
 $('#register').click(function(){
-  $('#register').hide()
-  $('#registerinput').hide()
-
-  $('#unregister').show()
-  $('#open').show()
-  $('p').html('This Safety box is owned by<br>'+$('#optionsmenu input').val())
-  if ($(this).text()==$('#table div').text()) $(this).find('span').attr("id","red")
-  $('#table div span').attr("id","red")
-  eval('localStorage.'+$('#table div').text()+'="'+$('#optionsmenu input').val()+'"')
-
+logging($('#username').val(),'Registered '+$('#table div').text())
+$('#safeid').val($('#table div').text())
+$('#register').hide()
+$('#registerinput').hide()
+$('#unregister').show()
+$('#open').show()
+$('p').html('This Safety box is owned by<br>'+$('#optionsmenu input').val())
+if ($(this).text()==$('#table div').text()) $(this).find('span').attr("id","red")
+$('#table div span').attr("id","red")
+$.ajax({data:{Hkid:$('#table div').text(),Pin:'123456',Safeid:$('#table div').text()},type:'POST',url:'/update'})
 })
 })//ready
+function arrayAlreadyHasArray(arr, testArr){
+for(var i = 0; i<arr.length; i++){
+let checker = []
+for(var j = 0; j<arr[i].length; j++){
+if(arr[i][j] === testArr[j]){checker.push(true)
+} else {checker.push(false)}}
+if (checker.every(check => check === true)){return true}}return false
+}
 function search() {
-  if ($("#search").val()==""){$("#content div").show()}else{
-  $("#content div").each(function(index){
-	  if(!$(this).text()){
-		$(this).hide();
-	  }else if ($(this).text().indexOf($("#search").val())>-1&&$(this).css('display')=='none'){
-	  $(this).show();
-    } else if ($(this).text().indexOf($("#search").val())==-1) {
-	$(this).hide();
-    }
-  })}
+if ($("#search").val()==""){$("#content div").show()}else{
+$("#content div").each(function(index){
+if(!$(this).text()){
+$(this).hide();
+}else if ($(this).text().indexOf($("#search").val())>-1&&$(this).css('display')=='none'){
+$(this).show();
+} else if ($(this).text().indexOf($("#search").val())==-1) {
+$(this).hide();
+}
+})}
 }
 function togglesafetybox(){
-    $('#optionsmenu').toggle();
+$('#optionsmenu').toggle();
 $('#table').html('')
 }
+function logging(staff,event){
+table.row.add(["Now",staff,event,"N/A"]).draw()
+$.ajax({data:{Staff:staff,Event:event},type:'POST',url:'/log'})
+}
+function check(){
+if($('#token').val().length==6){
+$.ajax({data:{Username:$('#username').val(),Token:$('#token').val()},type:'POST',url:'/check'}).done(function(data) {
+if(data.result){
+$('#logbutton').show()
+var branch=$('#username').val()[5]+$('#username').val()[6]
+$('#branchcookie').val(branch)
+for(var num=1;num<=20;num++){
+tempnum=num;
+if(tempnum.toString().length==1) tempnum='0'+tempnum.toString()
+if(safe2d[indexof(branch+tempnum)][1]=='None'||safe2d[indexof(branch+tempnum)][1]==''||safe2d[indexof(branch+tempnum)][1]==null)  $("#content").append('<div id="safe">'+branch+tempnum+'<span id="grn"></div>')
+else $("#content").append('<div id="safe">'+branch+tempnum+'<span id="red"></div>')
+}
+$('#branch').html('BRANCH '+branch)
+$('#vault').show()
+fullpage_api.moveSectionDown()
+fullpage_api.setAllowScrolling(false);
+}else{
+$('#tokenerror').show().delay(2000).fadeOut(300)
+}
+})
+}
+}//check
+function showrecord(record){
+if(record[2].includes('Opened')){ 
+$('tbody').append('<tr><td>'+record[0]+'</td><td>'+record[1]+'</td><td>'+record[2]+'</td><td><canvas id="tempcanvas"></td></tr>')
+$('#tempcanvas')[0].width=223
+$('#tempcanvas')[0].height=158
+ctx=$('#tempcanvas')[0].getContext('2d')
+ctx.fillStyle = '#000'
 
+ctx.drawImage(img,0,0)
 
-function autolog(action){
-    localStorage.log=localStorage.log+datetime.data+action
+ctx.fillText(record[0].replaceAll('/','-'),0,ctx.canvas.height)
+$('#tempcanvas').removeAttr('id')}
+else{
+$('tbody').append('<tr><td>'+record[0]+'</td><td>'+record[1]+'</td><td>'+record[2]+'</td><td>N/A</td></tr>')
+
+}
+return true;
+
+}
+function loop(){
+$.ajax({data:{},type:'POST',url:'/loop'})
+.done(function(data){
+safe2d = data.safe
+for(var num=1;num<=20;num++){
+tempnum=num;
+if(tempnum.toString().length==1) tempnum='0'+tempnum.toString()
+$('#content div').each(function(index){
+if ($(this).text()==branch+tempnum){
+if(safe2d[indexof(branch+tempnum)][1]!=null&&safe2d[indexof(branch+tempnum)][1]!='') $(this).find('span').attr("id","red")
+else  $(this).find('span').attr("id","grn")
+}})}})
+setTimeout(loop, 10000);
 }
 </script>
 </body>

@@ -1,0 +1,177 @@
+<style>
+html,body{
+font-family: Arial;
+padding: 0;
+margin: 0;
+height: 100%;
+}
+#optionsmenu{
+width: 100%;
+min-width: 100%;
+background: rgba(0, 0, 0, 0.8) ;
+z-index: 3;
+display: flex;
+padding: 0;
+margin: 0;
+position: absolute;
+overflow: hidden;
+top:0;
+bottom:0;
+left:0;
+right:0;
+display: none;
+backdrop-filter: blur(5px);
+}
+#table div,#open div,#register div,body,#qrcode div,html{
+align-items: center;
+margin-left:auto;
+margin-right:auto;
+padding-left: auto;
+padding-right: auto;
+display: block;
+justify-content: center;
+left: 40%;
+margin-top:10%
+}
+#optionsmenu button,#open button{
+width: 25%;
+border: none;
+color: black;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+display: block;
+justify-content: center;
+align-items: center;
+font-size: 30px;
+cursor: pointer;
+left: 40%;
+margin-left: auto;
+margin-right: auto;
+padding-bottom: 2%;
+margin-bottom: 2%;
+}
+#bar{
+padding:0px 0px 0px 0px;
+height:4px;
+width:100%;
+FONT-SIZE: 0px;
+background-image: url("/static/bar.png");
+background-repeat: repeat-y;
+FONT-SIZE: 0px;
+display: block;
+overflow-y: hidden;
+}
+#header {
+width: 100%;
+background-color: #42403c;
+background: white;
+position: fixed;
+height: 60px;
+top: 0;
+z-index: 5;
+}
+#title{
+margin-top: 10px;
+margin-bottom: 10px;
+margin-left: 3px;
+margin-right: 3px;
+}
+input, #content input{
+padding: 3px 4px;
+border: 1px solid #999;
+-webkit-box-shadow: none;
+-moz-box-shadow: none;
+box-shadow: none;
+border-radius: 0px;
+margin-bottom: 2%;
+font-size: 30px;
+}
+#staff{
+vertical-align: middle;
+text-align: center;
+align-items: center;
+margin-left:auto;
+margin-right:auto;
+}
+#staff button,#greenbutton, .greenbutton,#optionsmenu button #open button,#open input,#header button{
+min-width: 60px;
+font-weight: 400;
+font-size: 1.1875rem;
+line-height: 1.26315789;
+background: #00a865;
+border-color: #00a865;
+color: #ffffff;
+padding: 4px 19px;
+margin-top: 2%;
+}
+#registerinput,#open,#qrcode div,#content,#result{
+color: black;
+font-weight: bold;
+font-size: 30px;
+text-align: center;
+padding-top: 2%;
+padding-bottom: 2%;
+align-items: center;
+margin-left:auto;
+margin-right:auto;
+padding: 70px 0;
+}
+#header button{
+top: 20px;
+right: 0;
+margin-top:0;
+float: right;
+height: 55px;
+display: none;
+}
+#qrcode{
+vertical-align: middle;
+text-align: center;
+margin: 1%;
+display:inline-block;
+padding: 100px 0;
+font-weight: bold;
+font-size: 30px;
+font-family: Arial;
+left: 30%;
+margin-left: 10%;
+}
+
+
+
+</style>
+<header id="header"><img id='title' src="{{url_for('static', filename='title.png')}}"><div id="bar"></div></header>
+
+<div id='content'>
+<p1>Register STAFF ONLY</p1><br><br>
+Username: <input style="width: 50%;" id='username' placeholder="e.g. staffAAsteve"><br>
+Password: <input style="width: 50%;" id='password'><br>
+<button id='verify' class="greenbutton">Register</button><br><br>
+<a style="color: darkred;display: none;" id='err'>Incorrect username format</a><br>
+<input type="submit" style="visibility:hidden; position:absolute" >
+Note: Username must start with staffAA, or staffAB, or staffAC...<br>
+
+</div>
+<div id='result' style="display: none;">
+Please use Google Authenticator, Authy, or another compatible app<br>to scan this QR Code for 2FA(TOTP)<br>
+<div id="qrcode"></div>
+
+</div>
+<script src="static/qrcode.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+<script>
+$('#verify').click(function(){
+console.log('click')
+if($('#username').val().match(/staff[A-Z][A-Z]/)){
+$.ajax({data:{Username:$('#username').val(),Password:$('#password').val()},
+type:'POST',url:'/registered'}).done(function(data) {
+new QRCode("qrcode").makeCode(data.url)
+$('#content').hide()
+$('#result').show()
+})
+}else $("#err").show().delay(2000).fadeOut(300)
+})
+</script>
