@@ -1,6 +1,7 @@
 import sys
 from flask import Flask, render_template,request, jsonify
-from supersqlite import sqlite3
+#from supersqlite import sqlite3
+import sqlite3
 import string
 import random
 import os
@@ -15,7 +16,7 @@ def register():
     return render_template('register.html')
 @app.route('/registered' , methods=['POST'])
 def registered():
-    conn = sqlite3.connect('hs.db')
+    conn = sqlite3.connect(path, timeout=30)
     c=conn.cursor()
     key=''.join(random.choices(string.ascii_uppercase+'234567',k=16))
     c.execute("""INSERT INTO staff VALUES (?,?,?)""",(request.form['Username'],request.form['Password'],key))
@@ -24,7 +25,7 @@ def registered():
 
 @app.route('/check' , methods=['POST'])
 def check():
-    conn = sqlite3.connect('hs.db')
+    conn = sqlite3.connect(path, timeout=30)
     c=conn.cursor()
     c.execute("SELECT * FROM staff WHERE username = ?",(request.form['Username'],))
     if pyotp.TOTP(c.fetchone()[2]).now()==request.form['Token']:return jsonify({'result':True })
@@ -108,12 +109,12 @@ def save():
     c.execute("UPDATE safe SET hkid = ? , pin = ? WHERE safe_id = ?",(hkid,pin,request.form['Safeid']))
     conn.commit()
     c.close()
-    conn = sqlite3.connect('hs.db')
+    conn = sqlite3.connect(path, timeout=30)
     c=conn.cursor()
     c.execute("SELECT * FROM safe")
     safe=c.fetchall()
     c.close()
-    conn = sqlite3.connect('hs.db')
+    conn = sqlite3.connect(path, timeout=30)
     c=conn.cursor()
     c.execute("SELECT * FROM staff")
     staff=c.fetchall()
@@ -122,7 +123,7 @@ def save():
 
 @app.route('/log', methods=['POST'])
 def log():
-    conn = sqlite3.connect('hs.db', timeout=30)
+    conn = sqlite3.connect(path, timeout=30)
     c=conn.cursor()
     c.execute('INSERT INTO log VALUES(?,?,?)',( datetime.now().strftime("%d/%m/%Y %H:%M:%S"),request.form['Staff'],request.form['Event']))
     conn.commit()
@@ -147,6 +148,7 @@ def update():
     conn.commit()
     c.close()
     return 'updated'
+
 if __name__=='__main__':
     app.debug=True
     app.run(host="0.0.0.0",port=8000)

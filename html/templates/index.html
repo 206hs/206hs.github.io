@@ -294,8 +294,8 @@ position: absolute;
 </style>
 </head>
 <body>
-<header id="header"><img id='title' src="{{url_for('static', filename='title.png')}}">
-<button id="logbutton">LOG</button>
+    <header id="header"><a href="http://206hs.hopto.org"><img id='title' src="{{url_for('static', filename='title.png')}}" href="http://206hs.hopto.org"></a>
+        <button id="logbutton">LOG</button>
 <div id='log'>
 <table id='logtable'>
 <thead><tr><th>Time</th><th>Staff</th><th>Event</th><th>Snapshot</th></tr></thead>
@@ -325,8 +325,7 @@ Please use Google Authenticator, Authy, or another compatible app<br>Find <a></a
 <div id="vault" class="section" style="display: none;" >
 <div id='optionsmenu'>
 <button id='greenbutton' style="float: right;width: fit-content;margin-top: 10%;" onclick="togglesafetybox()">X</button>
-<div id='table'></div>
-<p></p>
+
 <div id="registerinput">
 <form action = /save method = "POST" id='save'>
 <input  name="Safeid" id='safeid' style="display: none;">
@@ -339,6 +338,9 @@ New register user HKID: <input placeholder="e.g. A123456(8)" name="Hkid" id='inp
 <a id='registernerror' style="color: red;display: none;">Incorrect HKID/pin format</a>
 </div><!--registerinput-->
 <div id='open'>
+
+
+
 <input id='unregister' type="submit" value='Unregister' class='greenbutton'>
 <a class='white'>6 Digit Pin: </a><input placeholder="e.g. 123456"  b name="Pin" type="password" id="verifypin">
 <button id='openbutton' class='greenbutton'>Open</button>
@@ -349,7 +351,6 @@ New register user HKID: <input placeholder="e.g. A123456(8)" name="Hkid" id='inp
 <h1 id='branch'>BRANCH AA</h1>
 <input id="search" type="text" size="80%" placeholder="Search safe..." onkeyup="search()" >
 <div id="content"></div>
-<canvas id='tempcanvas'></canvas>
 </div><!--vault-->
 </div><!--container-->
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -359,6 +360,7 @@ New register user HKID: <input placeholder="e.g. A123456(8)" name="Hkid" id='inp
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <script>
+var table
 var hkid,remainder,check
 new fullpage('#fullpage',{sectionsColor:['white','lightgrey','white']});
 {% if log %}
@@ -370,6 +372,7 @@ img.onload = function(){
 
 
 log2d.every(showrecord)
+console.log('table')
 table=$('#logtable').DataTable({"order":[[0,"desc"]]});
 
 }
@@ -385,8 +388,10 @@ logined('{{branchcookie}}')
 var staff='{{staff}}'.replace(/&#39;/gm,'').replace(/[(]/gm,'[').replace(/[)]/gm,']')
 var staff2d = staff.substring(2,staff.length-2).split("], [").map(function(e){return e.split(", ").map(String)})
 {%endif%}
+
 function indexof(safeid){
-return (safeid[0].charCodeAt(0) - 65)*26+(safeid[1].charCodeAt(0) - 65)*20+safeid[2]*10+safeid[3]-1
+return (safeid[0].charCodeAt(0) - 65)*26+(safeid[1].charCodeAt(0) - 65)*20+
+parseInt('1'*10)+parseInt('0')-1
 }
 function logined(branchcookie){
 logging($('#username').val(),'Login success')
@@ -574,8 +579,8 @@ $('#tokenerror').show().delay(2000).fadeOut(300)
 function showrecord(record){
 if(record[2].includes('Opened')){ 
 $('tbody').append('<tr><td>'+record[0]+'</td><td>'+record[1]+'</td><td>'+record[2]+'</td><td><canvas id="tempcanvas"></td></tr>')
-$('#tempcanvas')[0].width=223
-$('#tempcanvas')[0].height=158
+$('#tempcanvas').width=223
+$('#tempcanvas').height=158
 ctx=$('#tempcanvas')[0].getContext('2d')
 ctx.fillStyle = '#000'
 
@@ -584,7 +589,7 @@ ctx.drawImage(img,0,0)
 ctx.fillText(record[0].replaceAll('/','-'),0,ctx.canvas.height)
 $('#tempcanvas').removeAttr('id')}
 else{
-$('tbody').append('<tr><td>'+record[0]+'</td><td>'+record[1]+'</td><td>'+record[2]+'</td><td>N/A</td></tr>')
+$('tbody')[0].append('<tr><td>'+record[0]+'</td><td>'+record[1]+'</td><td>'+record[2]+'</td><td>N/A</td></tr>')
 
 }
 return true;
